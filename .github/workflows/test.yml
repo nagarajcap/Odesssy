@@ -12,3 +12,33 @@ jobs:
       
     - name: Print Hello
       run: echo "Hello"
+
+
+    - name: install-aws-cli
+      uses: unfor19/install-aws-cli-action@v1
+      with:
+        version: 2
+
+    - name: Configure AWS credentials
+    uses: aws-actions/configure-aws-credentials@v1
+    with:
+      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      aws-region: us-east-1
+
+    - name: Print Hello
+      run: aws s3 cp copy of filename s3://bucketname 
+
+    - name: Run a databricks notebook
+      uses: databricks/run-notebook@v0
+      with:
+        local-notebook-path: path/to/my/databricks_notebook.py
+        databricks-host: https://adb-XXXX.XX.dev.awsdatabricks.net
+        databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+        git-commit: ${{ github.event.pull_request.head.sha }}
+        new-cluster-json: >
+          {
+            "num_workers": 1,
+            "spark_version": "10.4.x-scala2.12",
+            "node_type_id": "Standard_D3_v2"
+          }
