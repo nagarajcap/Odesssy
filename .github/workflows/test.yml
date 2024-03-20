@@ -26,7 +26,7 @@ jobs:
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       aws-region: us-east-1
 
-    - name: Print Hello
+    - name: upload the file from s3 bucket
       run: aws s3 cp copy of filename s3://bucketname 
 
     - name: Run a databricks notebook
