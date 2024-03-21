@@ -32,7 +32,7 @@ jobs:
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com  # Change this to your SMTP server address
-        server_port: 587  # Change this to your SMTP server port
+        server_port: 465 # Change this to your SMTP server port
         username: ${{ secrets.EMAIL_USERNAME }}  # Set your email username as a secret
         password: ${{ secrets.EMAIL_PASSWORD }}  # Set your email password as a secret
         subject: GitHub Actions Notification
@@ -41,4 +41,3 @@ jobs:
           This is a test email notification.
         to: nagarajubeee@gmail.com  # Set the recipient email address
         from: nagarajcapgemini@gmail.com  # Set the sender email address
- 
