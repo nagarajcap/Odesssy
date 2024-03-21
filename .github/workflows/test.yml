@@ -41,3 +41,4 @@ jobs:
           This is a test email notification.
         to: nagarajubeee@gmail.com  # Set the recipient email address
         from: nagarajcapgemini@gmail.com  # Set the sender email address
+        
