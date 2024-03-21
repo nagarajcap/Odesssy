@@ -1,0 +1,19 @@
+     from pyspark.sql import SparkSession
+         from pyspark.sql import Row
+
+    # Create a SparkSession
+        spark = SparkSession.builder \
+        .appName("HelloWorld") \
+        .getOrCreate()
+
+    # Create a list of Row objects with a single column "message"
+        data = [Row(message="Hello, World!")]
+
+    # Create a DataFrame from the list of Row objects
+        df = spark.createDataFrame(data)
+
+    # Show the contents of the DataFrame
+        df.show()
+
+    # Stop the SparkSession
+        spark.stop()
