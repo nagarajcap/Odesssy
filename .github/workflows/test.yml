@@ -13,6 +13,27 @@ jobs:
     - name: Print Hello
       run: echo "Hello"
 
+    
+        from pyspark.sql import SparkSession
+         from pyspark.sql import Row
+
+    # Create a SparkSession
+        spark = SparkSession.builder \
+        .appName("HelloWorld") \
+        .getOrCreate()
+
+    # Create a list of Row objects with a single column "message"
+        data = [Row(message="Hello, World!")]
+
+    # Create a DataFrame from the list of Row objects
+        df = spark.createDataFrame(data)
+
+    # Show the contents of the DataFrame
+        df.show()
+
+    # Stop the SparkSession
+        spark.stop()
+
 
     - name: install-aws-cli
       uses: unfor19/install-aws-cli-action@v1
@@ -27,18 +48,21 @@ jobs:
       aws-region: us-east-1
 
     - name: upload the file from s3 bucket
-      run: aws s3 cp copy of filename s3://bucketname 
+      run: aws s3 cp copy of filename s3://odyssey-buc 
 
-    - name: Run a databricks notebook
-      uses: databricks/run-notebook@v0
-      with:
-        local-notebook-path: path/to/my/databricks_notebook.py
-        databricks-host: https://adb-XXXX.XX.dev.awsdatabricks.net
-        databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
-        git-commit: ${{ github.event.pull_request.head.sha }}
-        new-cluster-json: >
-          {
-            "num_workers": 1,
-            "spark_version": "10.4.x-scala2.12",
-            "node_type_id": "Standard_D3_v2"
-          }
+     - name: Send email notification
+      uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.example.com  # Change this to your SMTP server address
+          server_port: 587  # Change this to your SMTP server port
+          username: ${{ secrets.EMAIL_USERNAME }}  # Set your email username as a secret
+          password: ${{ secrets.EMAIL_PASSWORD }}  # Set your email password as a secret
+          subject: GitHub Actions Notification
+          body: |
+            Hello from GitHub Actions!
+            This is a test email notification.
+          to: nagarajubeee@gmail.com  # Set the recipient email address
+          from: nagarajcapgemini@gmail.com  # Set the sender email address
+ 
+
+   
