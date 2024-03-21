@@ -28,19 +28,19 @@ jobs:
     - name: upload the file from s3 bucket
       run: aws s3 cp ods.txt s3://odyssey-buc 
 
-    - name: Send email notification
-      uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com  # Change this to your SMTP server address
-          server_port: 587  # Change this to your SMTP server port
-          username: ${{ secrets.EMAIL_USERNAME }}  # Set your email username as a secret
-          password: ${{ secrets.EMAIL_PASSWORD }}  # Set your email password as a secret
-          subject: GitHub Actions Notification
-          body: |
-            Hello from GitHub Actions!
-            This is a test email notification.
-          to: nagarajubeee@gmail.com  # Set the recipient email address
-          from: nagarajcapgemini@gmail.com  # Set the sender email address
+    # - name: Send email notification
+    #   uses: dawidd6/action-send-mail@v3
+    #     with:
+    #       server_address: smtp.gmail.com  # Change this to your SMTP server address
+    #       server_port: 587  # Change this to your SMTP server port
+    #       username: ${{ secrets.EMAIL_USERNAME }}  # Set your email username as a secret
+    #       password: ${{ secrets.EMAIL_PASSWORD }}  # Set your email password as a secret
+    #       subject: GitHub Actions Notification
+    #       body: |
+    #         Hello from GitHub Actions!
+    #         This is a test email notification.
+    #       to: nagarajubeee@gmail.com  # Set the recipient email address
+    #       from: nagarajcapgemini@gmail.com  # Set the sender email address
  
 
    
